@@ -1,4 +1,5 @@
-﻿using Codice.Client.Common.GameUI;
+﻿using Codice.Client.BaseCommands.Merge;
+using Codice.Client.Common.GameUI;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -12,7 +13,6 @@ public class Player : MonoBehaviour
 
     [SerializeField] private float acelaration;
     [SerializeField] private float speed;
-
 
 
     void Update()
@@ -29,10 +29,14 @@ public class Player : MonoBehaviour
     private void PlayerMovement()
     {
         
-
+        
         if(Input.GetKey(KeyCode.UpArrow))
         {
-            //transform.Translate((Vector2.up * Time.deltaTime) *speed);
+            //correct version of aceleration starts here
+            acelaration += speed * Time.deltaTime; 
+            transform.Translate((Vector2.up * Time.deltaTime) * acelaration);
+            //ends here
+            //adapt the others when at home and update the journal with it
             Debug.Log("up");
         }
         if (Input.GetKey(KeyCode.DownArrow))
