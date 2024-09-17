@@ -35,7 +35,7 @@ public class Player : MonoBehaviour
             //correct version of aceleration starts here
             acelaration += speed * Time.deltaTime; 
             transform.Translate((Vector2.up * Time.deltaTime) * acelaration);
-            //ends here
+             //ends here
             //adapt the others when at home and update the journal with it
             Debug.Log("up");
         }
