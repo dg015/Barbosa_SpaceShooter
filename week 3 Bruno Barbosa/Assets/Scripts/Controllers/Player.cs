@@ -13,47 +13,55 @@ public class Player : MonoBehaviour
 
     [SerializeField] private float acelaration;
     [SerializeField] private float speed;
-
+    [SerializeField] private float DecelerationTime;
 
     void Update()
     {
-
+        PlayerMovement();
     }
 
     private void FixedUpdate()
     {
-        PlayerMovement();
+        
     }
 
 
     private void PlayerMovement()
     {
         
-        
         if(Input.GetKey(KeyCode.UpArrow))
         {
-            //correct version of aceleration starts here
             acelaration += speed * Time.deltaTime; 
             transform.Translate((Vector2.up * Time.deltaTime) * acelaration);
-             //ends here
-            //adapt the others when at home and update the journal with it
             Debug.Log("up");
         }
         if (Input.GetKey(KeyCode.DownArrow))
         {
-            transform.Translate((Vector2.down * Time.deltaTime) * speed);
+            acelaration += speed * Time.deltaTime;
+            transform.Translate((Vector2.down * Time.deltaTime) * acelaration);
             Debug.Log("down");
         }
         if (Input.GetKey(KeyCode.RightArrow))
         {
-            transform.Translate((Vector2.right * Time.deltaTime) * speed);
+            acelaration += speed * Time.deltaTime;
+            transform.Translate((Vector2.right * Time.deltaTime) * acelaration);
             Debug.Log("right");
         }
         if (Input.GetKey(KeyCode.LeftArrow))
         {
-            transform.Translate((Vector2.left * Time.deltaTime) * speed);
+            acelaration += speed * Time.deltaTime;
+            transform.Translate((Vector2.left * Time.deltaTime) * acelaration);
             Debug.Log("left");
         }
+        else if (acelaration > 0)
+        {
+            
+           float DecelarationRate = (speed /DecelerationTime) * Time.deltaTime;
+            acelaration -= DecelarationRate;
+
+
+        }
+        
     }
 
 }
