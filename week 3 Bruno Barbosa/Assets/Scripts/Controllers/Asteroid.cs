@@ -11,10 +11,19 @@ public class Asteroid : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+
+    }
+
+
+    public void OnMouseUpAsButton()
+    {
+        maxFloatDistance = Random.Range(0, maxFloatDistance);
+
     }
 
     // Update is called once per frame
     void Update()
     {
+
     }
 }
