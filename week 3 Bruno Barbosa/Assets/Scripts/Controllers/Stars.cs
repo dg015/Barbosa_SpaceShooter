@@ -14,7 +14,7 @@ public class Stars : MonoBehaviour
         if (!inProcess)
         StartCoroutine(drawConstellation());
     }
-    //wrote in 20 minutes
+    
 
     IEnumerator drawConstellation()
     {
