@@ -10,13 +10,6 @@ public class Asteroid : MonoBehaviour
     public bool hasReached;
     Vector3 TargetLocation;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-
     public void AsteroidMovement()
     {
       
@@ -24,7 +17,7 @@ public class Asteroid : MonoBehaviour
         if( TargetLocation == Vector3.zero || hasReached )
         {
           //create new random location
-          Debug.Log("Im working"+ TargetLocation);
+         // Debug.Log("Im working"+ TargetLocation);
           TargetLocation = new Vector2((Random.Range(-maxFloatDistance, maxFloatDistance)), (Random.Range(-maxFloatDistance, maxFloatDistance)));
           hasReached = false;
         }
@@ -40,11 +33,11 @@ public class Asteroid : MonoBehaviour
             Vector3 direction = (TargetLocation - transform.position).normalized;
             transform.Translate(direction * moveSpeed * Time.deltaTime);
             
-            Debug.Log("walking toawrds location");
+            //Debug.Log("walking toawrds location");
         }
         else
         {
-            Debug.Log("arrived");
+            //Debug.Log("arrived");
             hasReached = true;
         }
 
