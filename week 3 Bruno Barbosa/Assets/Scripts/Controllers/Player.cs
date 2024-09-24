@@ -15,14 +15,21 @@ public class Player : MonoBehaviour
     [SerializeField] private float speed;
     [SerializeField] private float DecelerationTime;
 
+
+    //enemy radar
+    [SerializeField] private float radius;
+    [SerializeField] private int circlePoints;
+
     void Update()
     {
         PlayerMovement();
     }
 
-    private void FixedUpdate()
+    public void EnemyRadar(float radius, int circlePoints)
     {
-        
+
+
+
     }
 
 
