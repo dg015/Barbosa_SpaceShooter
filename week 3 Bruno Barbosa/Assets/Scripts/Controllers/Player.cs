@@ -27,7 +27,11 @@ public class Player : MonoBehaviour
 
     public void EnemyRadar(float radius, int circlePoints)
     {
+        for (int i = 0; i < circlePoints; i++)
+        {
 
+
+        }
 
 
     }
