@@ -21,6 +21,8 @@ public class Player : MonoBehaviour
     [SerializeField] private float radius;
     [SerializeField] private int circlePoints;
     [SerializeField] private List<Vector2> points;
+    [SerializeField] private bool isComplete;
+
 
     private void Start()
     {
@@ -30,13 +32,14 @@ public class Player : MonoBehaviour
     void Update()
     {
         PlayerMovement();
+
         EnemyRadar(radius, circlePoints);
     }
 
     public void EnemyRadar(float radius, int circlePoints)
     {
         Vector2 nexPoint;
-
+        points.Clear();
         //first do the math to get points
         for (int i = 0; i < circlePoints; i++)
         {
@@ -77,6 +80,9 @@ public class Player : MonoBehaviour
         */
     }
 
+    //Notes:  A circle is 360 -> divide it by the number points 
+    // ex = 360/5 = 72degrees
+    //https://www.quora.com/How-do-you-divide-a-circle-into-equal-parts#:~:text=Then%20We%20divide%20into%20a,a%20circle%20with%2030%C2%B0.
 
     private void PlayerMovement()
     {
