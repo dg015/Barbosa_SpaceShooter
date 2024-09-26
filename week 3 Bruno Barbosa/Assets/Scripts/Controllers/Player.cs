@@ -21,18 +21,14 @@ public class Player : MonoBehaviour
     [SerializeField] private float radius;
     [SerializeField] private int circlePoints;
     [SerializeField] private List<Vector2> points;
-    [SerializeField] private bool hasCompleted;
 
     private void Start()
     {
         points = new List<Vector2>();
-        
     }
 
     void Update()
     {
-        if( points.Count ==5)
-            hasCompleted = true;
         PlayerMovement();
         EnemyRadar(radius, circlePoints);
     }
@@ -40,25 +36,37 @@ public class Player : MonoBehaviour
     public void EnemyRadar(float radius, int circlePoints)
     {
         Vector2 nexPoint;
+
+        //first do the math to get points
         for (int i = 0; i < circlePoints; i++)
         {
-            if (i == points.Count - 1)//check if its the last star
+            float xPos = Mathf.Cos(i);
+            float yPos = Mathf.Sin(i);
+            points.Add(new Vector2(xPos, yPos) * radius);
+            if (i == points.Count - 1)
             {
-                nexPoint = points[0];//back to first one in the list
+                nexPoint = points[0];
             }
             else
             {
-                nexPoint = points[i + 1];//if not then continue as normal
+                nexPoint = points[i+1];
             }
+
+
+
+        }
+
+        /*
+
+        for (int i = 0; i < circlePoints; i++)
+        {
+
             if (!hasCompleted)
             {
                 //points[i] = new Vector2((Mathf.Cos(i),Mathf.Sin(i)) * radius);
                 float xPos = Mathf.Cos(i);
                 float yPos = Mathf.Sin(i);
                 //points[i] = new Vector2(xPos, yPos) * radius;
-
-                
-
                 points.Add(new Vector2(xPos, yPos) * radius);
 
 
@@ -66,7 +74,7 @@ public class Player : MonoBehaviour
             Debug.DrawLine(points[i], nexPoint, Color.green);
         }
         
-
+        */
     }
 
 
