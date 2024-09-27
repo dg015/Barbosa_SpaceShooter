@@ -21,7 +21,7 @@ public class Stars : MonoBehaviour
         inProcess = true;
         for (int i = 0; i < starTransforms.Count; i++)
         {
-            Debug.Log(i);
+            
             Transform nextStar;
             if (i == starTransforms.Count - 1)//check if its the last star
             {

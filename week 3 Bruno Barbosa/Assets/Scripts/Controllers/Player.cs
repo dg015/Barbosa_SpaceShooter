@@ -20,13 +20,13 @@ public class Player : MonoBehaviour
     //enemy radar
     [SerializeField] private float radius;
     [SerializeField] private int circlePoints;
-    [SerializeField] private List<Vector2> points;
+    [SerializeField] private List<Vector3> points;
     [SerializeField] private bool isComplete;
 
 
     private void Start()
     {
-        points = new List<Vector2>();
+        points = new List<Vector3>();
     }
 
     void Update()
@@ -38,51 +38,44 @@ public class Player : MonoBehaviour
 
     public void EnemyRadar(float radius, int circlePoints)
     {
-        Vector2 nexPoint;
+        float angleDivision = 2 * Mathf.PI / circlePoints;// dividing cicle
+        
+        Vector3 nexPoint = Vector3.zero;
         points.Clear();
+
+
         //first do the math to get points
         for (int i = 0; i < circlePoints; i++)
         {
-            float xPos = Mathf.Cos(i);
-            float yPos = Mathf.Sin(i);
-            points.Add(new Vector2(xPos, yPos) * radius);
-            if (i == points.Count - 1)
+
+            float angle = angleDivision * i;
+            float xPos = Mathf.Cos(angle);
+            float yPos = Mathf.Sin(angle);
+            
+
+            points.Add(new Vector3(xPos, yPos) * radius);
+
+        }
+        for (int i = 0; i < circlePoints; i++)
+        {
+            if (i == circlePoints - 1)
             {
                 nexPoint = points[0];
+                Debug.Log("in the end");
             }
             else
             {
-                nexPoint = points[i+1];
-            }
-
-
-
-        }
-
-        /*
-
-        for (int i = 0; i < circlePoints; i++)
-        {
-
-            if (!hasCompleted)
-            {
-                //points[i] = new Vector2((Mathf.Cos(i),Mathf.Sin(i)) * radius);
-                float xPos = Mathf.Cos(i);
-                float yPos = Mathf.Sin(i);
-                //points[i] = new Vector2(xPos, yPos) * radius;
-                points.Add(new Vector2(xPos, yPos) * radius);
-
+                nexPoint = points[i + 1];// since the lists starts at 0 I should be i instead of i + 1
+                Debug.Log("going trough");
 
             }
-            Debug.DrawLine(points[i], nexPoint, Color.green);
+            Debug.DrawLine(transform.position +  points[i],transform.position + nexPoint, Color.white);
         }
-        
-        */
     }
 
     //Notes:  A circle is 360 -> divide it by the number points 
     // ex = 360/5 = 72degrees
-    //https://www.quora.com/How-do-you-divide-a-circle-into-equal-parts#:~:text=Then%20We%20divide%20into%20a,a%20circle%20with%2030%C2%B0.
+
 
     private void PlayerMovement()
     {
