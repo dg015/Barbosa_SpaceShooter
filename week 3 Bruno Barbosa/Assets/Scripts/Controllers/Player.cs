@@ -68,12 +68,12 @@ public class Player : MonoBehaviour
             if (i == circlePoints - 1)
             {
                 nexPoint = points[0];
-                Debug.Log("in the end");
+                //Debug.Log("in the end");
             }
             else
             {
                 nexPoint = points[i + 1];// since the lists starts at 0 I should be i instead of i + 1
-                Debug.Log("going trough");
+               // Debug.Log("going trough");
 
             }
             Debug.DrawLine(transform.position +  points[i],transform.position + nexPoint, Color.white);

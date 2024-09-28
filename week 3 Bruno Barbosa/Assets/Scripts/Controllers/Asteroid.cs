@@ -25,7 +25,7 @@ public class Asteroid : MonoBehaviour
         float distanceFromTarget = Vector2.Distance(transform.position, TargetLocation);
 
         //draw line to the location just to make it easier
-        Debug.DrawLine(transform.position, (TargetLocation - transform.position).normalized, Color.blue);
+        //Debug.DrawLine(transform.position, (TargetLocation - transform.position).normalized, Color.blue);
         //check if its in the arrival radius
         if (distanceFromTarget > arrivalDistance)
         {
