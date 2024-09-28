@@ -1,9 +1,8 @@
-﻿using Codice.Client.BaseCommands.Merge;
-using Codice.Client.Common.GameUI;
+﻿using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Runtime.CompilerServices;
 using UnityEngine;
+using static UnityEditor.FilePathAttribute;
 
 public class Player : MonoBehaviour
 {
@@ -24,6 +23,10 @@ public class Player : MonoBehaviour
     [SerializeField] private bool isComplete;
 
 
+    //power upds
+    [SerializeField] private int numberOfPowerUps;
+    [SerializeField] private GameObject powerUp;
+
     private void Start()
     {
         points = new List<Vector3>();
@@ -34,6 +37,11 @@ public class Player : MonoBehaviour
         PlayerMovement();
 
         EnemyRadar(radius, circlePoints);
+        if (Input.GetKeyDown(KeyCode.P))
+        {
+            spawnPowerUps(radius, numberOfPowerUps);
+        }
+        
     }
 
     public void EnemyRadar(float radius, int circlePoints)
@@ -52,7 +60,6 @@ public class Player : MonoBehaviour
             float xPos = Mathf.Cos(angle);
             float yPos = Mathf.Sin(angle);
             
-
             points.Add(new Vector3(xPos, yPos) * radius);
 
         }
@@ -73,8 +80,22 @@ public class Player : MonoBehaviour
         }
     }
 
-    //Notes:  A circle is 360 -> divide it by the number points 
-    // ex = 360/5 = 72degrees
+    public void spawnPowerUps(float radius, int numberOfPowerUps)
+    {
+        for (int i = 0; i < numberOfPowerUps; i++)
+        {
+            float angleDivision = 2 * Mathf.PI / numberOfPowerUps;// dividing cicle
+            float angle = UnityEngine.Random.value * angleDivision; // get an random angle from a circle, which to guarantee it will be from a circle it is multiplied by 360
+            //random. value returns a value from 0 to 1 so thats why multiplying it by 360  will get certainly an angle
+            float x = Mathf.Cos(angle * Mathf.Deg2Rad) * radius; //get an random X location by using the the angle multiplying it by radius guarantees it will be inside of the circle
+            float y = Mathf.Sin(angle * Mathf.Deg2Rad) * radius; //get an random Y location by using the the angle
+
+
+            Vector3 location = new Vector2(x, y);
+            Instantiate(powerUp,transform.position + location, Quaternion.identity);
+        }
+        
+    }
 
 
     private void PlayerMovement()
