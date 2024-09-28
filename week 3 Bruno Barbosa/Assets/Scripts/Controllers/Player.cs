@@ -85,10 +85,10 @@ public class Player : MonoBehaviour
         for (int i = 0; i < numberOfPowerUps; i++)
         {
             float angleDivision = 2 * Mathf.PI / numberOfPowerUps;// dividing cicle
-            float angle = UnityEngine.Random.value * angleDivision; // get an random angle from a circle, which to guarantee it will be from a circle it is multiplied by 360
-            //random. value returns a value from 0 to 1 so thats why multiplying it by 360  will get certainly an angle
-            float x = Mathf.Cos(angle * Mathf.Deg2Rad) * radius; //get an random X location by using the the angle multiplying it by radius guarantees it will be inside of the circle
-            float y = Mathf.Sin(angle * Mathf.Deg2Rad) * radius; //get an random Y location by using the the angle
+            float angle = angleDivision * i; //multiply the value by i, which is the iteration so it spawns at the correct location
+           
+            float x = Mathf.Cos(angle) * radius; //get an random X location by using the the angle multiplying it by radius guarantees it will be inside of the circle
+            float y = Mathf.Sin(angle) * radius; //get an random Y location by using the the angle
 
 
             Vector3 location = new Vector2(x, y);
