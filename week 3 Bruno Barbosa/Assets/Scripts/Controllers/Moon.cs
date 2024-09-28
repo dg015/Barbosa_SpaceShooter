@@ -27,16 +27,19 @@ public class Moon : MonoBehaviour
     {
 
 
-        float angle = Mathf.Acos(Mathf.Cos(target.position.x));
-        float nextAngle = (angle + 1) * speed * Time.deltaTime;
+        float angle = Vector2.Angle(target.position,transform.position);
+
+
+
+        float nextAngle = angle * speed * Time.deltaTime;
 
 
         float newX = Mathf.Cos(nextAngle) * radius;
         float newY = Mathf.Sin(nextAngle) * radius;
+        Debug.Log(nextAngle);
+        transform.position = new Vector2(target.position.x + newX, target.position.y + newY);
 
-        transform.position = new Vector3(target.position.x + newX, target.position.y + newY);
-
-        Debug.DrawLine(target.position,transform.position);
+       
 
     }
 
