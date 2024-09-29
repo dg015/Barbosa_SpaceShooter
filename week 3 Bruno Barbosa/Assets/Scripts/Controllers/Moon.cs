@@ -9,11 +9,17 @@ public class Moon : MonoBehaviour
     public Transform planetTransform;
     [SerializeField] private float radius;
     [SerializeField] private float speed;
+    private float angle;
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        //transform.position = planetTransform.position + Vector3.up * radius;
+        Vector3 localPosition = (transform.position - planetTransform.position).normalized;
+
+
+        angle = Mathf.Atan2(localPosition.x, localPosition.y) * Mathf.Rad2Deg;
+
     }
 
     // Update is called once per frame
@@ -25,22 +31,21 @@ public class Moon : MonoBehaviour
 
     private void OrbitalMotion(float radius, float speed, Transform target)
     {
+        //float angle = Vector2.Angle(target.position,transform.position);
 
 
-        float angle = Vector2.Angle(target.position,transform.position);
+        //modulating so when the angle reaches 360 it goes back to 0
+        float nextAngle = (angle + speed * Time.deltaTime) % 360f;
+        angle = nextAngle;
+        float newX = Mathf.Cos(nextAngle * Mathf.Deg2Rad) * radius;
+        float newY = Mathf.Sin(nextAngle * Mathf.Deg2Rad) * radius;
 
-
-
-        float nextAngle = angle * speed * Time.deltaTime;
-
-
-        float newX = Mathf.Cos(nextAngle) * radius;
-        float newY = Mathf.Sin(nextAngle) * radius;
         Debug.Log(nextAngle);
-        transform.position = new Vector2(target.position.x + newX, target.position.y + newY);
+        transform.position = target.position + new Vector3( newX,  newY);
 
-       
 
+
+        // to get vector to angle use atan2
     }
 
 }
