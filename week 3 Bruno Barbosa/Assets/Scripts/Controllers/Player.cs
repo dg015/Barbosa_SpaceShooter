@@ -148,12 +148,12 @@ public class Player : MonoBehaviour
     {
        float angleDivisionOffset = 360/ numberOfBombs;
 
-       for ( int i = 1; i < numberOfBombs + 1; i++)
+       for (int i = 1; i < numberOfBombs + 1; i++)
        {
-            float xPosition = MathF.Sin(angleDivisionOffset * i); // sin to get the X and cos to get the Y
-            float yPosition = MathF.Cos(angleDivisionOffset * i); // cos to get the Y
+            float xPosition = MathF.Cos(angleDivisionOffset * Mathf.Deg2Rad * i); // cos to get the X and sin to get the Y
+            float yPosition = MathF.Sin(angleDivisionOffset * Mathf.Deg2Rad * i); // sin to get the Y
 
-            Vector3 position = new Vector3(xPosition,yPosition,1);
+            Vector3 position = new Vector2(xPosition,yPosition);
             
             Instantiate(bombPrefab, transform.position + position * radius, Quaternion.identity);   
        }
