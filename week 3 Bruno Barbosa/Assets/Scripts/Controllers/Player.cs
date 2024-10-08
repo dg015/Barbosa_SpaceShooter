@@ -31,7 +31,7 @@ public class Player : MonoBehaviour
     [Header("rotating bombs")]
     [SerializeField] private int numberOfBombs;
     [SerializeField] private float bombRadius;
-
+    [SerializeField] private GameObject rotatingBombs;
 
     private void Start()
     {
@@ -115,25 +115,25 @@ public class Player : MonoBehaviour
         {
             acelaration += speed * Time.deltaTime; 
             transform.Translate((Vector2.up * Time.deltaTime) * acelaration);
-            Debug.Log("up");
+            //Debug.Log("up");
         }
         if (Input.GetKey(KeyCode.DownArrow))
         {
             acelaration += speed * Time.deltaTime;
             transform.Translate((Vector2.down * Time.deltaTime) * acelaration);
-            Debug.Log("down");
+            //Debug.Log("down");
         }
         if (Input.GetKey(KeyCode.RightArrow))
         {
             acelaration += speed * Time.deltaTime;
             transform.Translate((Vector2.right * Time.deltaTime) * acelaration);
-            Debug.Log("right");
+            //Debug.Log("right");
         }
         if (Input.GetKey(KeyCode.LeftArrow))
         {
             acelaration += speed * Time.deltaTime;
             transform.Translate((Vector2.left * Time.deltaTime) * acelaration);
-            Debug.Log("left");
+            //Debug.Log("left");
         }
         else if (acelaration > 0)
         {
@@ -155,7 +155,7 @@ public class Player : MonoBehaviour
 
             Vector3 position = new Vector2(xPosition,yPosition);
             
-            Instantiate(bombPrefab, transform.position + position * radius, Quaternion.identity);   
+            Instantiate(rotatingBombs, transform.position + position * radius, Quaternion.identity);   
        }
 
 

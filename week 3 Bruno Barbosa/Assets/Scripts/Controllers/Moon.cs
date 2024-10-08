@@ -40,7 +40,7 @@ public class Moon : MonoBehaviour
         float newX = Mathf.Cos(nextAngle * Mathf.Deg2Rad) * radius;
         float newY = Mathf.Sin(nextAngle * Mathf.Deg2Rad) * radius;
 
-        Debug.Log(nextAngle);
+        //Debug.Log(nextAngle);
         transform.position = target.position + new Vector3( newX,  newY);
 
 
