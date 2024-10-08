@@ -16,16 +16,22 @@ public class Player : MonoBehaviour
     [SerializeField] private float DecelerationTime;
 
 
-    //enemy radar
+    [Header("Enemy radar")]
     [SerializeField] private float radius;
     [SerializeField] private int circlePoints;
     [SerializeField] private List<Vector3> points;
     [SerializeField] private bool isComplete;
 
 
-    //power upds
+    [Header("Power Ups")]
     [SerializeField] private int numberOfPowerUps;
     [SerializeField] private GameObject powerUp;
+
+
+    [Header("rotating bombs")]
+    [SerializeField] private int numberOfBombs;
+    [SerializeField] private float bombRadius;
+
 
     private void Start()
     {
@@ -40,6 +46,10 @@ public class Player : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.P))
         {
             spawnPowerUps(radius, numberOfPowerUps);
+        }
+        if (Input.GetKeyDown(KeyCode.R))
+        {
+            spawnRotatingBombs(bombRadius, numberOfBombs);
         }
         
     }
@@ -132,6 +142,18 @@ public class Player : MonoBehaviour
             acelaration -= DecelarationRate;
         }
         
+    }
+
+    private void spawnRotatingBombs(float radius, int numberOfBombs)
+    {
+       float angleDivisionOffset = numberOfBombs / 360;
+       for ( int i = 0; i < numberOfBombs; i++)
+        {
+            Vector3 position = new Vector3(angleDivisionOffset * i, angleDivisionOffset * 1,1);
+            Instantiate(bombPrefab, position, Quaternion.identity);   
+        }
+
+
     }
 
 }
