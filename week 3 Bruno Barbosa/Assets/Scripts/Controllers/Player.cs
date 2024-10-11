@@ -30,7 +30,7 @@ public class Player : MonoBehaviour
 
     [Header("rotating bombs")]
     [SerializeField] private int numberOfBombs;
-    [SerializeField] private float bombRadius;
+    [SerializeField] public float bombRadius;
     [SerializeField] private GameObject rotatingBombs;
 
     private void Start()
