@@ -27,6 +27,9 @@ public class Player : MonoBehaviour
     [SerializeField] private int numberOfPowerUps;
     [SerializeField] private GameObject powerUp;
 
+
+    //Bomb shield
+
     private void Start()
     {
         points = new List<Vector3>();
