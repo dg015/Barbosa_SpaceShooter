@@ -22,10 +22,17 @@ public class RotatingBombs : MonoBehaviour
 
     private void followPlayer()
     {
-
-
         spinTarget = GameObject.Find("Player").transform;
-        transform.position = transform.position - spinTarget.position;
+
+        float currentAngle = Mathf.Atan2(spinTarget.position.y - transform.position.y, spinTarget.position.x - transform.position.x);
+        Debug.Log("atan2:"+currentAngle);
+        Debug.Log("Vector 3 angle" + Vector3.Angle(  transform.position,spinTarget.position));
+        float XPosition = Mathf.Cos(currentAngle);
+        float YPosition = Mathf.Sin(currentAngle);
+
+
+
+        
 
         /* rationale
         start for loop
