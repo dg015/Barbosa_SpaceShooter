@@ -25,12 +25,13 @@ public class RotatingBombs : MonoBehaviour
         spinTarget = GameObject.Find("Player").transform;
 
         float currentAngle = Mathf.Atan2(spinTarget.position.y - transform.position.y, spinTarget.position.x - transform.position.x);
-        Debug.Log("atan2:"+currentAngle);
-        Debug.Log("Vector 3 angle" + Vector3.Angle(  transform.position,spinTarget.position));
-        float XPosition = Mathf.Cos(currentAngle);
-        float YPosition = Mathf.Sin(currentAngle);
+        Debug.Log("atan2:"+currentAngle * Mathf.Rad2Deg);
 
+        float XPosition = Mathf.Cos(currentAngle) * Mathf.Rad2Deg;
+        float YPosition = Mathf.Sin(currentAngle) * Mathf.Rad2Deg;
 
+        //Vector2 nextAngle = new Vector2(XPosition + 1, YPosition+  1);
+        //transform.position = nextAngle;
 
         
 
