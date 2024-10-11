@@ -8,11 +8,13 @@ public class RotatingBombs : MonoBehaviour
     [SerializeField] private Transform spinTarget;
     [SerializeField] private float speed;
     [SerializeField] private Player player;
+    [SerializeField] private float currentAngle;
 
     // Start is called before the first frame update
     void Start()
     {
         player = GameObject.Find("Player").GetComponent<Player>();
+         currentAngle = (Mathf.Atan2(spinTarget.position.y - transform.position.y, spinTarget.position.x - transform.position.x));
     }
 
     // Update is called once per frame
@@ -25,14 +27,14 @@ public class RotatingBombs : MonoBehaviour
     {
         spinTarget = GameObject.Find("Player").transform;
 
-        float currentAngle = Mathf.Atan2(spinTarget.position.y - transform.position.y, spinTarget.position.x - transform.position.x);
-        Debug.Log("atan2:"+currentAngle * Mathf.Rad2Deg);
+        
+         currentAngle +=  speed * Time.deltaTime;
 
         float XPosition = Mathf.Cos(currentAngle * Mathf.Rad2Deg) * player.bombRadius;
         float YPosition = Mathf.Sin(currentAngle * Mathf.Rad2Deg) * player.bombRadius;
 
-        Vector2 nextAngle = new Vector2(XPosition , YPosition);
-        transform.position = nextAngle * 2;
+        Vector2 nextAngle = new Vector2(spinTarget.position.x + XPosition , spinTarget.position.y + YPosition);
+        transform.position = nextAngle;
 
         
 
