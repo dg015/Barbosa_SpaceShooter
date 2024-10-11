@@ -13,6 +13,7 @@ public class RotatingBombs : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        spinTarget = GameObject.Find("Player").transform;
         player = GameObject.Find("Player").GetComponent<Player>();
          currentAngle = (Mathf.Atan2(spinTarget.position.y - transform.position.y, spinTarget.position.x - transform.position.x));
     }
@@ -25,7 +26,7 @@ public class RotatingBombs : MonoBehaviour
 
     private void followPlayer()
     {
-        spinTarget = GameObject.Find("Player").transform;
+        
 
         
          currentAngle +=  speed * Time.deltaTime;
