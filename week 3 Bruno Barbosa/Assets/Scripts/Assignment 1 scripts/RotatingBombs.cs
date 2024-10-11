@@ -22,9 +22,18 @@ public class RotatingBombs : MonoBehaviour
 
     private void followPlayer()
     {
+
+
         spinTarget = GameObject.Find("Player").transform;
         transform.position = transform.position - spinTarget.position;
 
-
+        /* rationale
+        start for loop
+        Get the angle between bomb and player
+        Increase the angle
+        Get the location of what would be the increased angle
+        translate the bomb to the locaiton of the new location
+        use % so it goes back to 0
+        */
     }
 }
