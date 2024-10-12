@@ -8,9 +8,11 @@ public class TravelingBom : MonoBehaviour
     [SerializeField] private float speed;
     [SerializeField] private float acelerationIndex;
     [SerializeField] private float desacelerationIndex;
+    [SerializeField] private float acelerationTimer;
     //desaceleration
     [SerializeField] private float currentAceleration;
     [SerializeField] private float currentDesacelerationIndex;
+    [SerializeField] private float DeacelerationTimer;
     //player
     [SerializeField] private Transform player;
 
@@ -35,7 +37,29 @@ public class TravelingBom : MonoBehaviour
 
     private void Movement()
     {
-        speed += acelerationIndex * Time.deltaTime;
+        if (acelerationTimer > 0)
+        {
+            speed += acelerationIndex * Time.deltaTime; // adding speed
+            acelerationTimer -= Time.deltaTime;// decreading it over time
+        }
+        else
+        {
+            speed -= (desacelerationIndex / DeacelerationTimer) * Time.deltaTime;
+        }
+        if (speed < 0.5)
+        {
+            //destroy object
+        }
+
+        
         transform.Translate(mouseDirection * speed * Time.deltaTime);
     }
+
+    /*
+     * HOW TO MAKE IT DESSALERATE
+     * When fired set the aceleration to max for X seconds
+     * when timer reaches 0 start start dessaleration function
+     * When speed reaches less then X variable destroy bomb
+     * 
+     */
 }
