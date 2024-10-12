@@ -33,6 +33,9 @@ public class Player : MonoBehaviour
     [SerializeField] public float bombRadius;
     [SerializeField] private GameObject rotatingBombs;
 
+    [Header("Traveling bombs")]
+    [SerializeField] private GameObject travelingBombs;
+
     private void Start()
     {
         points = new List<Vector3>();
@@ -51,7 +54,7 @@ public class Player : MonoBehaviour
         {
             spawnRotatingBombs(bombRadius, numberOfBombs);
         }
-        
+        spawnTravelingBombs();
     }
 
     public void EnemyRadar(float radius, int circlePoints)
@@ -146,11 +149,11 @@ public class Player : MonoBehaviour
 
     private void spawnTravelingBombs()
     {
-        Vector3 mousePosition = Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y));
 
-        Vector3 mouseDirection = (mousePosition - transform.position).normalized;
-
-        
+        if(Input.GetKeyDown(KeyCode.S))
+        {
+            Instantiate(travelingBombs, transform.position,Quaternion.identity);
+        }
     }
 
     private void spawnRotatingBombs(float radius, int numberOfBombs)

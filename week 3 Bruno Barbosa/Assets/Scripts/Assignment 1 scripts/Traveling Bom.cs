@@ -11,12 +11,13 @@ public class TravelingBom : MonoBehaviour
     //desaceleration
     [SerializeField] private float currentAceleration;
     [SerializeField] private float currentDesacelerationIndex;
-
+    //player
+    [SerializeField] private Transform player;
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        player = GameObject.Find("Player").transform;
     }
 
     // Update is called once per frame
@@ -27,7 +28,12 @@ public class TravelingBom : MonoBehaviour
 
     private void Movement()
     {
-        transform.Translate(Vector2.right * speed * Time.deltaTime);
-        float mouseDirection;
+        
+        Vector3 mousePosition = Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y));
+
+        Vector3 mouseDirection = (mousePosition - player.position).normalized;
+
+        transform.Translate(mousePosition * speed * Time.deltaTime);
+
     }
 }
