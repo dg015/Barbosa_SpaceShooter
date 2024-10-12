@@ -14,10 +14,15 @@ public class TravelingBom : MonoBehaviour
     //player
     [SerializeField] private Transform player;
 
+
+    Vector3 mouseDirection;
     // Start is called before the first frame update
     void Start()
     {
         player = GameObject.Find("Player").transform;
+        Vector3 mousePosition = Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y));
+
+        mouseDirection = (mousePosition - player.position).normalized;
     }
 
     // Update is called once per frame
@@ -28,12 +33,6 @@ public class TravelingBom : MonoBehaviour
 
     private void Movement()
     {
-        
-        Vector3 mousePosition = Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y));
-
-        Vector3 mouseDirection = (mousePosition - player.position).normalized;
-
-        transform.Translate(mousePosition * speed * Time.deltaTime);
-
+        transform.Translate(mouseDirection * speed * Time.deltaTime);
     }
 }
