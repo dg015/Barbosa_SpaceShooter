@@ -26,10 +26,7 @@ public class RotatingBombs : MonoBehaviour
 
     private void followPlayer()
     {
-        
-
-        
-         currentAngle +=  speed * Time.deltaTime;
+        currentAngle +=  speed * Time.deltaTime;
 
         float XPosition = Mathf.Cos(currentAngle * Mathf.Rad2Deg) * player.bombRadius;
         float YPosition = Mathf.Sin(currentAngle * Mathf.Rad2Deg) * player.bombRadius;
