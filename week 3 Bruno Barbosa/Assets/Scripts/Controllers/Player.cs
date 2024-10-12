@@ -146,14 +146,14 @@ public class Player : MonoBehaviour
 
     private void spawnRotatingBombs(float radius, int numberOfBombs)
     {
-       float angleDivisionOffset = 360/ numberOfBombs;
+       float angleDivisionOffset = 360/ numberOfBombs; // get the angle of each bomb
 
-       for (int i = 1; i < numberOfBombs + 1; i++)
+       for (int i = 1; i < numberOfBombs + 1; i++)// loop to spawn every single bomb
        {
-            float xPosition = MathF.Cos(angleDivisionOffset * Mathf.Deg2Rad * i); // cos to get the X and sin to get the Y
-            float yPosition = MathF.Sin(angleDivisionOffset * Mathf.Deg2Rad * i); // sin to get the Y
+            float xPosition = MathF.Cos(angleDivisionOffset * Mathf.Deg2Rad * i); // cos to get the X and adapt it into radians, multiply it by i to adapt the positio to angle
+            float yPosition = MathF.Sin(angleDivisionOffset * Mathf.Deg2Rad * i); // sin to get the Y and adapt it into radians, multiply it by i to adapt the positio to angle
 
-            Vector3 position = new Vector2(xPosition,yPosition);
+            Vector3 position = new Vector2(xPosition,yPosition); // put the new positon into new vector
             
             Instantiate(rotatingBombs, transform.position + position * radius, Quaternion.identity);   
        }
