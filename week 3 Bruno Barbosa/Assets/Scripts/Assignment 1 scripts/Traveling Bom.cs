@@ -28,6 +28,6 @@ public class TravelingBom : MonoBehaviour
     private void Movement()
     {
         transform.Translate(Vector2.right * speed * Time.deltaTime);
-
+        float mouseDirection;
     }
 }

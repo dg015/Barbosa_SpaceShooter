@@ -144,6 +144,15 @@ public class Player : MonoBehaviour
         
     }
 
+    private void spawnTravelingBombs()
+    {
+        Vector3 mousePosition = Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y));
+
+        Vector3 mouseDirection = (mousePosition - transform.position).normalized;
+
+        
+    }
+
     private void spawnRotatingBombs(float radius, int numberOfBombs)
     {
        float angleDivisionOffset = 360/ numberOfBombs; // get the angle of each bomb
