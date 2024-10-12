@@ -46,7 +46,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 0.5
-  acelerationIndex: 0
+  acelerationIndex: 1.2
   desacelerationIndex: 0
   currentAceleration: 0
   currentDesacelerationIndex: 0

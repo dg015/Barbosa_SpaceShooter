@@ -31,8 +31,11 @@ public class TravelingBom : MonoBehaviour
         Movement();
     }
 
+
+
     private void Movement()
     {
+        speed += acelerationIndex * Time.deltaTime;
         transform.Translate(mouseDirection * speed * Time.deltaTime);
     }
 }
