@@ -20,15 +20,20 @@ public class TravelingBom : MonoBehaviour
     void Start()
     {
         player = GameObject.Find("Player").transform;
-        Vector3 mousePosition = Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y));
+        Vector3 mousePosition = Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y,0));
 
         mouseDirection = (mousePosition - player.position).normalized;
+        mouseDirection.z = 0;
     }
 
     // Update is called once per frame
     void Update()
     {
         Movement();
+    }
+    private void OnMouseUpAsButton()
+    {
+        
     }
 
 
@@ -49,10 +54,10 @@ public class TravelingBom : MonoBehaviour
         }
         if (speed < 0.5)
         {
-            Debug.Log("destroyed object");
+            Destroy(gameObject);
         }
 
-        
+        mouseDirection.z = 0;
         transform.Translate(mouseDirection * speed * Time.deltaTime);
         speed = Mathf.Clamp(speed, 0, 100);
     }
