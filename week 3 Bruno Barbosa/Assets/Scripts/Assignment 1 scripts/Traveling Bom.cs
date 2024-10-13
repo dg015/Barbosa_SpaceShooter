@@ -10,8 +10,6 @@ public class TravelingBom : MonoBehaviour
     [SerializeField] private float desacelerationIndex;
     [SerializeField] private float acelerationTimer;
     //desaceleration
-    [SerializeField] private float currentAceleration;
-    [SerializeField] private float currentDesacelerationIndex;
     [SerializeField] private float DeacelerationTimer;
     //player
     [SerializeField] private Transform player;
@@ -44,15 +42,19 @@ public class TravelingBom : MonoBehaviour
         }
         else
         {
-            speed -= (desacelerationIndex / DeacelerationTimer) * Time.deltaTime;
+            Debug.Log("tiemr ran out");
+            
+            speed -= (speed / DeacelerationTimer) * Time.deltaTime; // aceleration = velocity/ timer
+            DeacelerationTimer -= Time.deltaTime;
         }
         if (speed < 0.5)
         {
-            //destroy object
+            Debug.Log("destroyed object");
         }
 
         
         transform.Translate(mouseDirection * speed * Time.deltaTime);
+        speed = Mathf.Clamp(speed, 0, 100);
     }
 
     /*

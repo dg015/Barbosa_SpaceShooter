@@ -45,11 +45,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a6bbe71a9955e884e99d9cdcd71989ea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 0.5
+  speed: 5
   acelerationIndex: 1.2
-  desacelerationIndex: 0
-  currentAceleration: 0
-  currentDesacelerationIndex: 0
+  desacelerationIndex: 0.5
+  acelerationTimer: 2
+  DeacelerationTimer: 3
   player: {fileID: 0}
 --- !u!1 &1369739229142278
 GameObject:
@@ -125,7 +125,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: f8d9fdbda703f454b857cbba0424b94b, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.94275093, g: 1, b: 0, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
