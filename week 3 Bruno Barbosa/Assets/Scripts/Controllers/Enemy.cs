@@ -14,9 +14,11 @@ public class Enemy : MonoBehaviour
     [Header("Enemy Turret")]
     [SerializeField] private float StaringAtRadius;
     [SerializeField] private float AttackAtRadius;
+    [Header("Bomb shooting")]
     [SerializeField] private GameObject DesacelerationBomb;
     [SerializeField] private float bombTimer;
     [SerializeField] private float bombTimerMax;
+    [SerializeField] private int numberOfBombs;
     private void Start()
     {
         target = GameObject.Find("Player").transform;
@@ -56,7 +58,11 @@ public class Enemy : MonoBehaviour
             if (bombTimer <= 0)
             {
                 Debug.DrawLine(transform.position, target.position, Color.red);
-                Instantiate(DesacelerationBomb, transform.position, transform.rotation * Quaternion.Euler(0, 0, 90)); // adding the 90 degree offset
+                for (int i = 0; i < numberOfBombs; i++)
+                {
+                    Instantiate(DesacelerationBomb, new Vector2(transform.position.x + i, transform.position.y), transform.rotation * Quaternion.Euler(0, 0, 90)); // adding the 90 degree offset
+                    Debug.Log(i);
+                }
                 bombTimer = bombTimerMax;
             }
             
