@@ -22,12 +22,14 @@ public class Enemy : MonoBehaviour
 
     private void Update()
     {
+        GetTarget(target);
+        /*
         CurrentDistance = Vector2.Distance(transform.position, target.position);
         if( CurrentDistance <ActiviatinDistance )
         {
             chaseTarget(target);
         }
-
+        */
     }
 
     private void GetTarget(Transform target)
@@ -35,11 +37,12 @@ public class Enemy : MonoBehaviour
         float currentDistance = Vector2.Distance(transform.position, target.position);
         if(currentDistance <= StaringAtRadius )
         {
-            //do stuff
+            Debug.DrawLine(transform.position, target.position, Color.yellow);
 
         }
-        else if ( currentDistance <= AttackAtRadius )
+        if ( currentDistance <= AttackAtRadius )
         {
+            Debug.DrawLine(transform.position, target.position, Color.red);
             //do stuff
         }
 
