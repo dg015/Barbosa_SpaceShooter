@@ -3,27 +3,49 @@ using System.Collections;
 
 public class Enemy : MonoBehaviour
 {
-
+   
     [SerializeField] private Transform target;
+    [Header("Basic enemy movement")]
     [SerializeField] private float ActiviatinDistance;
     [SerializeField] private float distanceFromTarget;
     [SerializeField] private float CurrentDistance;
+    [Header("Enemy Turret")]
+    [SerializeField] private float StaringAtRadius;
+    [SerializeField] private float AttackAtRadius;
+    [SerializeField] private GameObject DesacelerationBomb;
+
+
+    private void Start()
+    {
+        target = GameObject.Find("Player").transform;
+    }
 
     private void Update()
     {
-
-        
         CurrentDistance = Vector2.Distance(transform.position, target.position);
         if( CurrentDistance <ActiviatinDistance )
         {
             chaseTarget(target);
         }
-        
-        
 
     }
 
-   
+    private void GetTarget(Transform target)
+    {
+        float currentDistance = Vector2.Distance(transform.position, target.position);
+        if(currentDistance <= StaringAtRadius )
+        {
+            //do stuff
+
+        }
+        else if ( currentDistance <= AttackAtRadius )
+        {
+            //do stuff
+        }
+
+
+    }
+
 
     private void chaseTarget(Transform target)
     {
