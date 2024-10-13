@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using Codice.ThemeImages;
 
 public class Enemy : MonoBehaviour
 {
@@ -38,7 +39,10 @@ public class Enemy : MonoBehaviour
         if(currentDistance <= StaringAtRadius )
         {
             Debug.DrawLine(transform.position, target.position, Color.yellow);
-
+            Vector2 playerDirection =  (transform.position - target.position).normalized;
+            float angle = Mathf.Atan2(playerDirection.y, playerDirection.x)* Mathf.Rad2Deg;
+            transform.rotation = Quaternion.Euler(0, 0, angle + 90);
+            
         }
         if ( currentDistance <= AttackAtRadius )
         {
