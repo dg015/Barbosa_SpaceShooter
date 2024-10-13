@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using Codice.ThemeImages;
+using UnityEngine.UIElements;
 
 public class Enemy : MonoBehaviour
 {
@@ -14,8 +15,8 @@ public class Enemy : MonoBehaviour
     [SerializeField] private float StaringAtRadius;
     [SerializeField] private float AttackAtRadius;
     [SerializeField] private GameObject DesacelerationBomb;
-
-
+    [SerializeField] private float bombTimer;
+    [SerializeField] private float bombTimerMax;
     private void Start()
     {
         target = GameObject.Find("Player").transform;
@@ -36,6 +37,7 @@ public class Enemy : MonoBehaviour
     private void GetTarget(Transform target)
     {
         float currentDistance = Vector2.Distance(transform.position, target.position);
+        
         if(currentDistance <= StaringAtRadius )
         {
             Debug.DrawLine(transform.position, target.position, Color.yellow);
@@ -44,13 +46,23 @@ public class Enemy : MonoBehaviour
             transform.rotation = Quaternion.Euler(0, 0, angle + 90);
             
         }
+        if (bombTimer >0 )
+        {
+            bombTimer -= Time.deltaTime;
+
+        }
         if ( currentDistance <= AttackAtRadius )
         {
-            Debug.DrawLine(transform.position, target.position, Color.red);
-            //do stuff
+            if (bombTimer <= 0)
+            {
+                Debug.DrawLine(transform.position, target.position, Color.red);
+                Instantiate(DesacelerationBomb, transform.position, transform.rotation * Quaternion.Euler(0, 0, 90)); // adding the 90 degree offset
+                bombTimer = bombTimerMax;
+            }
+            
         }
 
-
+        bombTimer = Mathf.Clamp(bombTimer, 0, bombTimerMax);
     }
 
 

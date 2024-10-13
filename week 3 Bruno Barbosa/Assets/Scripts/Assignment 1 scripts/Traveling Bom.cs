@@ -13,7 +13,7 @@ public class TravelingBom : MonoBehaviour
     [SerializeField] private float DeacelerationTimer;
     //player
     [SerializeField] private Transform player;
-
+    [SerializeField] private bool isEnemy;
 
     Vector3 mouseDirection;
     // Start is called before the first frame update
@@ -54,7 +54,15 @@ public class TravelingBom : MonoBehaviour
         }
 
         mouseDirection.z = 0;
-        transform.Translate(mouseDirection * speed * Time.deltaTime);
+        if (isEnemy)
+        {
+            transform.Translate(Vector2.right * speed * Time.deltaTime);
+        }
+        else
+        {
+            transform.Translate(mouseDirection * speed * Time.deltaTime);
+        }
+        
         speed = Mathf.Clamp(speed, 0, 100);
     }
 

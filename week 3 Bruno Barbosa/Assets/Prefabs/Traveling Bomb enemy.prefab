@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 4049822235980678}
   - component: {fileID: 1958734076634459066}
   m_Layer: 0
-  m_Name: Traveling Bomb
+  m_Name: Traveling Bomb enemy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -51,7 +51,7 @@ MonoBehaviour:
   acelerationTimer: 2
   DeacelerationTimer: 3
   player: {fileID: 0}
-  isEnemy: 0
+  isEnemy: 1
 --- !u!1 &1369739229142278
 GameObject:
   m_ObjectHideFlags: 0
