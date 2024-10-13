@@ -43,10 +43,13 @@ public class TravelingBom : MonoBehaviour
         }
         else
         {
-            Debug.Log("tiemr ran out");
-            
-            speed -= (speed / DeacelerationTimer) * Time.deltaTime; // aceleration = velocity/ timer
-            DeacelerationTimer -= Time.deltaTime;
+            speed -= (speed / DeacelerationTimer) * Time.deltaTime; // formula: aceleration = velocity/ timer
+            DeacelerationTimer -= Time.deltaTime; // desacelarate over time
+            /*WHY DECREASE THE DacelarationTimer?
+            Since the speed is decreasing, Deceleration adapts over time, 
+            making the object decelerate faster at first and then slower as it nears 0,
+            this ensures that the object stops at 0s
+            */
         }
         if (speed < 0.5)
         {
@@ -54,16 +57,16 @@ public class TravelingBom : MonoBehaviour
         }
 
         mouseDirection.z = 0;
-        if (isEnemy)
+        if (isEnemy) // boolean to check if the bomb will be shot by the player or enemy
         {
-            transform.Translate(Vector2.right * speed * Time.deltaTime);
+            transform.Translate(Vector2.right * speed * Time.deltaTime);//if enemy makes it go foward 
         }
         else
         {
-            transform.Translate(mouseDirection * speed * Time.deltaTime);
+            transform.Translate(mouseDirection * speed * Time.deltaTime);//if player for the first frame go towards the mouse direction
         }
         
-        speed = Mathf.Clamp(speed, 0, 100);
+        speed = Mathf.Clamp(speed, 0, 100); // clamp the speed to make sure it doest go bellow 0
     }
 
     /*

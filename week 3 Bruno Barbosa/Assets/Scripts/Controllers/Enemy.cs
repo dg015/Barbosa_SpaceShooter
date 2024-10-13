@@ -38,32 +38,33 @@ public class Enemy : MonoBehaviour
 
     private void GetTarget(Transform target)
     {
-        float currentDistance = Vector2.Distance(transform.position, target.position);
+        float currentDistance = Vector2.Distance(transform.position, target.position); // get distance from player to enemy
         
         if(currentDistance <= StaringAtRadius )
         {
-            Debug.DrawLine(transform.position, target.position, Color.yellow);
-            Vector2 playerDirection =  (transform.position - target.position).normalized;
-            float angle = Mathf.Atan2(playerDirection.y, playerDirection.x)* Mathf.Rad2Deg;
-            transform.rotation = Quaternion.Euler(0, 0, angle + 90);
+            Debug.DrawLine(transform.position, target.position, Color.yellow); 
+            Vector2 playerDirection =  (transform.position - target.position).normalized; // get the direction
+            float angle = Mathf.Atan2(playerDirection.y, playerDirection.x)* Mathf.Rad2Deg; // since the direction is not enough for the enemy to look at player have 
+            //Atan2 to get the angle 
+            transform.rotation = Quaternion.Euler(0, 0, angle + 90);// apply rotation with offset
             
         }
-        if (bombTimer >0 )
+        if (bombTimer >0 ) // check if timer is 0
         {
-            bombTimer -= Time.deltaTime;
+            bombTimer -= Time.deltaTime; // decrase timer 
 
         }
         if ( currentDistance <= AttackAtRadius )
         {
-            if (bombTimer <= 0)
+            if (bombTimer <= 0) // check if it can fire
             {
                 Debug.DrawLine(transform.position, target.position, Color.red);
-                for (int i = 0; i < numberOfBombs; i++)
+                for (int i = 0; i < numberOfBombs; i++)//loop for burst firing
                 {
                     Instantiate(DesacelerationBomb, new Vector2(transform.position.x + i, transform.position.y), transform.rotation * Quaternion.Euler(0, 0, 90)); // adding the 90 degree offset
-                    Debug.Log(i);
+                    
                 }
-                bombTimer = bombTimerMax;
+                bombTimer = bombTimerMax; // reset timer
             }
             
         }
@@ -81,9 +82,6 @@ public class Enemy : MonoBehaviour
             transform.Translate(direction * CurrentDistance * Time.deltaTime);   
            
         }
-        
-
-
     }
 
 }
